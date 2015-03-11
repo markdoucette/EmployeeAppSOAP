@@ -6,9 +6,12 @@ import ca.bcit.a00057006ws.employee.types.GetEmployeeByIdResponse;
 import ca.bcit.a00057006ws.employee.xml.EmployeeServicePort;
 import ca.bcit.a00057006ws.jpa.data.EmployeeFacade;
 
+import javax.jws.WebService;
+
 /**
- * Created by mdoucette on 15-03-11.
+ * Employee Service implementation
  */
+@WebService(endpointInterface = "ca.bcit.a00057006ws.employee.xml.EmployeeServicePort")
 public class EmployeeServices implements EmployeeServicePort {
     @Override
     public GetEmployeeByIdResponse getEmployeeById(GetEmployeeByIdRequest getEmployeeRequest) {

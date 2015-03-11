@@ -1,7 +1,7 @@
-package ca.bcit.a00057006ws.controller;
+package ca.bcit.a00057006.controller;
 
 import ca.bcit.a00057006ws.jpa.data.EmployeeFacade;
-import ca.bcit.a00057006ws.jpa.entity.Employee;
+import ca.bcit.a00057006ws.employee.types.Employee;
 
 import javax.persistence.RollbackException;
 import javax.servlet.ServletException;
@@ -77,7 +77,7 @@ public class EmployeeServlet extends HttpServlet {
 
         } else if (null != request.getParameter("find")) { // Handle the 'find employee' use case
             String id = request.getParameter("id");
-            Employee foundEmp = employeeFacade.getEmployeeById(id);
+            ca.bcit.a00057006ws.employee.types.Employee foundEmp = employeeFacade.getEmployeeById(id);
             if (null != foundEmp) {
                 request.setAttribute("foundEmp", foundEmp);
                 request.setAttribute("findSuccess", CODE_000);
@@ -92,7 +92,7 @@ public class EmployeeServlet extends HttpServlet {
             } else {
                 // remove the Employee
                 try {
-                    employeeFacade.removeEmployeeById(id);
+                    //employeeFacade.removeEmployeeById(id);
                     request.setAttribute("removeSuccess", CODE_001);
                 } catch (Exception e) {
                     request.setAttribute("removeViolation", CODE_904);

@@ -1,6 +1,6 @@
 package ca.bcit.a00057006ws.jpa.data;
 
-import ca.bcit.a00057006ws.jpa.entity.Employee;
+import ca.bcit.a00057006ws.employee.types.Employee;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

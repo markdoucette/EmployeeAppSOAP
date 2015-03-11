@@ -1,6 +1,8 @@
 
 package ca.bcit.a00057006ws.employee.types;
 
+import ca.bcit.a00057006ws.adapter.SqlDateAdapter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -9,6 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 import java.sql.Date;
 
@@ -51,7 +54,7 @@ public class Employee {
     @Id
     @NotNull
     @Pattern( regexp = "^[Aa]0[0-9]{7}")
-    protected int id;
+    protected String id;
 
     @XmlElement(required = true)
     protected String firstName;
@@ -61,21 +64,23 @@ public class Employee {
 
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
+    @XmlJavaTypeAdapter(SqlDateAdapter.class)
     protected Date dateOfBirth;
 
     /**
      * Gets the value of the id property.
      * 
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * Sets the value of the id property.
-     * 
+     *
+     * @param value
      */
-    public void setId(int value) {
+    public void setId(String value) {
         this.id = value;
     }
 
