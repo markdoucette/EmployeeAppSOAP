@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions targetNamespace="http://www.bcit.ca/a00057006ws/employee/xml"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xs="http://www.bcit.ca/a00057006ws/employee/xml"
+             xmlns:tns="http://www.bcit.ca/a00057006ws/employee/types/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             name="PersonService">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.bcit.ca/a00057006ws/employee/types/" schemaLocation="EmployeeServiceSchema.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="getEmployeeRequest">
+        <part name="getEmployeeRequest" element="tns:GetEmployeeByIdRequest"/>
+    </message>
+    <message name="getEmployeeResponse">
+        <part name="getEmployeeResponse" element="tns:GetEmployeeByIdResponse"/>
+    </message>
+    <portType name="EmployeeServicePort">
+        <operation name="getEmployeeById">
+            <input message="xs:getEmployeeRequest" />
+            <output message="xs:getEmployeeResponse" />
+        </operation>
+    </portType>
+    <binding name="EmployeeServicePortBinding" type="xs:EmployeeServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getEmployeeById">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="EmployeeService">
+        <port name="EmployeeServicePort" binding="xs:EmployeeServicePortBinding">
+            <soap:address location="http://localhost:8080/A00057006ws"/>
+        </port>
+    </service>
+</definitions>
