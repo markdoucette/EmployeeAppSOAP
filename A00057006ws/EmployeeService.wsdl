@@ -17,15 +17,59 @@
     <message name="getEmployeeResponse">
         <part name="getEmployeeResponse" element="tns:GetEmployeeByIdResponse"/>
     </message>
+    <message name="addEmployeeRequest">
+        <part name="addEmployeeRequest" element="tns:AddEmployeeRequest"/>
+    </message>
+    <message name="removeEmployeeRequest">
+        <part name="removeEmployeeRequest" element="tns:RemoveEmployeeByIdRequest"/>
+    </message>
+    <message name="getEmployeesRequest">
+        <part name="getEmployeesRequest" element="tns:GetEmployeesRequest"/>
+    </message>
+    <message name="getEmployeesResponse">
+        <part name="getEmployeesResponse" element="tns:GetEmployeesResponse"/>
+    </message>
+
     <portType name="EmployeeServicePort">
         <operation name="getEmployeeById">
             <input message="xs:getEmployeeRequest" />
             <output message="xs:getEmployeeResponse" />
         </operation>
+        <operation name="addEmployee">
+            <input message="xs:addEmployeeRequest"/>
+        </operation>
+        <operation name="removeEmployee">
+            <input message="xs:removeEmployeeRequest"/>
+        </operation>
+        <operation name="getEmployees">
+            <input message="xs:getEmployeesRequest"/>
+            <output message="xs:getEmployeesResponse"/>
+        </operation>
     </portType>
     <binding name="EmployeeServicePortBinding" type="xs:EmployeeServicePort">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <operation name="getEmployeeById">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="addEmployee">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+        <operation name="removeEmployee">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+        </operation>
+        <operation name="getEmployees">
             <soap:operation soapAction=""/>
             <input>
                 <soap:body use="literal"/>

@@ -7,7 +7,7 @@
     <xsd:element name="GetEmployeeByIdRequest">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element name="id" type="xsd:string" />
+                <xsd:element name="id" type="xsd:string"/>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
@@ -19,6 +19,23 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="AddEmployeeRequest" type="xb:Employee"/>
+    <xsd:element name="RemoveEmployeeByIdRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="id" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+
+    </xsd:element>
+    <xsd:element name="GetEmployeesRequest"/>
+    <xsd:element name="GetEmployeesResponse" type="xb:EmployeeListType"/>
+
+    <xsd:complexType name="EmployeeListType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Employee" type="xb:Employee"/>
+        </xsd:sequence>
+    </xsd:complexType>
 
     <xsd:complexType name="Employee">
         <xsd:sequence>

@@ -1,15 +1,19 @@
 
 package ca.bcit.a00057006ws.employee.xml;
 
+import javax.jws.Oneway;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import ca.bcit.a00057006ws.employee.types.Employee;
+import ca.bcit.a00057006ws.employee.types.EmployeeListType;
 import ca.bcit.a00057006ws.employee.types.GetEmployeeByIdRequest;
 import ca.bcit.a00057006ws.employee.types.GetEmployeeByIdResponse;
 import ca.bcit.a00057006ws.employee.types.ObjectFactory;
+import ca.bcit.a00057006ws.employee.types.RemoveEmployeeByIdRequest;
 
 
 /**
@@ -37,5 +41,37 @@ public interface EmployeeServicePort {
     public GetEmployeeByIdResponse getEmployeeById(
         @WebParam(name = "GetEmployeeByIdRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "getEmployeeRequest")
         GetEmployeeByIdRequest getEmployeeRequest);
+
+    /**
+     * 
+     * @param addEmployeeRequest
+     */
+    @WebMethod
+    @Oneway
+    public void addEmployee(
+        @WebParam(name = "AddEmployeeRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "addEmployeeRequest")
+        Employee addEmployeeRequest);
+
+    /**
+     * 
+     * @param removeEmployeeRequest
+     */
+    @WebMethod
+    @Oneway
+    public void removeEmployee(
+        @WebParam(name = "RemoveEmployeeByIdRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "removeEmployeeRequest")
+        RemoveEmployeeByIdRequest removeEmployeeRequest);
+
+    /**
+     * 
+     * @param getEmployeesRequest
+     * @return
+     *     returns ca.bcit.a00057006ws.employee.types.EmployeeListType
+     */
+    @WebMethod
+    @WebResult(name = "GetEmployeesResponse", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "getEmployeesResponse")
+    public EmployeeListType getEmployees(
+        @WebParam(name = "GetEmployeesRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "getEmployeesRequest")
+        Object getEmployeesRequest);
 
 }

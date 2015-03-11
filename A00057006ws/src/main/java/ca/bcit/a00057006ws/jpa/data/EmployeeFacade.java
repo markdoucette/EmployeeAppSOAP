@@ -84,14 +84,14 @@ public class EmployeeFacade {
      *
      * @param id the id to use as a search criteria
      */
-//    public void removeEmployeeById(String id) {
-//        // use the findById query to first retrieve the Employee
-//        Employee employee = getEmployeeById(id);
-//
-//        entityManager.getTransaction().begin();
-//        entityManager.remove(employee);
-//        entityManager.getTransaction().commit();
-//    }
+    public void removeEmployeeById(String id) {
+        // use the findById query to first retrieve the Employee
+        Employee employee = getEmployeeById(id);
+
+        entityManager.getTransaction().begin();
+        entityManager.remove(employee);
+        entityManager.getTransaction().commit();
+    }
 
     /**
      * Get a set of validation violations for display in another area
