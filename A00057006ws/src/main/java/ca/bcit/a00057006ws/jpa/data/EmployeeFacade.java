@@ -70,9 +70,9 @@ public class EmployeeFacade {
      * @return the found Employee
      */
 
-    public Employee getEmployeeById(String id) {
-        Employee emp;
-        emp = entityManager.find(Employee.class, id);
+    public ca.bcit.a00057006ws.employee.types.Employee getEmployeeById(String id) {
+        ca.bcit.a00057006ws.employee.types.Employee emp;
+        emp = entityManager.find(ca.bcit.a00057006ws.employee.types.Employee.class, id);
         if (null != emp) {
             return emp;
         }
@@ -84,14 +84,14 @@ public class EmployeeFacade {
      *
      * @param id the id to use as a search criteria
      */
-    public void removeEmployeeById(String id) {
-        // use the findById query to first retrieve the Employee
-        Employee employee = getEmployeeById(id);
-
-        entityManager.getTransaction().begin();
-        entityManager.remove(employee);
-        entityManager.getTransaction().commit();
-    }
+//    public void removeEmployeeById(String id) {
+//        // use the findById query to first retrieve the Employee
+//        Employee employee = getEmployeeById(id);
+//
+//        entityManager.getTransaction().begin();
+//        entityManager.remove(employee);
+//        entityManager.getTransaction().commit();
+//    }
 
     /**
      * Get a set of validation violations for display in another area

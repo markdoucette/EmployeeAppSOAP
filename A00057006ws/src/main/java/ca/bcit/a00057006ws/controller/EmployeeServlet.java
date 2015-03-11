@@ -1,7 +1,7 @@
 package ca.bcit.a00057006ws.controller;
 
-import ca.bcit.a00057006.jpa.data.EmployeeFacade;
-import ca.bcit.a00057006.jpa.entity.Employee;
+import ca.bcit.a00057006ws.jpa.data.EmployeeFacade;
+import ca.bcit.a00057006ws.jpa.entity.Employee;
 
 import javax.persistence.RollbackException;
 import javax.servlet.ServletException;
