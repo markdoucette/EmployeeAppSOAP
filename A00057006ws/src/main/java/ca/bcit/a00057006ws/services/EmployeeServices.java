@@ -46,7 +46,7 @@ public class EmployeeServices implements EmployeeServicePort {
     }
 
     @Override
-    public EmployeeListType getEmployees(Object getEmployeesRequest) {
+    public EmployeeListType getEmployees() {
         EmployeeListType empList = new EmployeeListType();
         EmployeeFacade employeeFacade = EmployeeFacade.getInstance();
         List<Employee> employees = employeeFacade.getEmployees();

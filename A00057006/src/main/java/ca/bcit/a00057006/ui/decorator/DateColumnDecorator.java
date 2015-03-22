@@ -1,4 +1,4 @@
-package ca.bcit.a00057006.decorator;
+package ca.bcit.a00057006.ui.decorator;
 
 import org.displaytag.decorator.DisplaytagColumnDecorator;
 import org.displaytag.exception.DecoratorException;

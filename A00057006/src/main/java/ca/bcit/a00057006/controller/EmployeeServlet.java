@@ -1,7 +1,13 @@
 package ca.bcit.a00057006.controller;
 
-import ca.bcit.a00057006ws.jpa.data.EmployeeFacade;
+
+
 import ca.bcit.a00057006ws.employee.types.Employee;
+import ca.bcit.a00057006ws.employee.types.EmployeeListType;
+import ca.bcit.a00057006ws.employee.types.GetEmployeeByIdRequest;
+import ca.bcit.a00057006ws.employee.types.GetEmployeeByIdResponse;
+import ca.bcit.a00057006ws.services.EmployeeServicePort;
+import ca.bcit.a00057006ws.services.EmployeeServicesService;
 
 import javax.persistence.RollbackException;
 import javax.servlet.ServletException;
@@ -21,7 +27,7 @@ import java.util.List;
  *
  * @author Mark Doucette
  */
-@WebServlet(name = "EmployeeServlet", urlPatterns = "/Employees")
+//@WebServlet(name = "EmployeeServlet", urlPatterns = "/Employees")
 public class EmployeeServlet extends HttpServlet {
 
     public static final String CODE_000 = "Result Code: 000 Description: Success";
@@ -35,7 +41,8 @@ public class EmployeeServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EmployeeFacade employeeFacade = EmployeeFacade.getInstance();
+        EmployeeServicesService service = new EmployeeServicesService();
+        EmployeeServicePort servicesPort = service.getEmployeeServicesPort();
 
         /*
         Handle the 'add employee' use case to persist a new Employee to the database.
@@ -62,7 +69,8 @@ public class EmployeeServlet extends HttpServlet {
                     emp.setLastName(lastName);
                     // Date must be converted to java.sql.Date for compliance with ms-sql Date type
                     emp.setDateOfBirth(new java.sql.Date(date.getTime()));
-                    employeeFacade.addEmployee(emp);
+
+                    servicesPort.addEmployee(emp);
 
                 } catch (ParseException e) {
                     request.setAttribute("addViolation", CODE_903);
@@ -77,9 +85,11 @@ public class EmployeeServlet extends HttpServlet {
 
         } else if (null != request.getParameter("find")) { // Handle the 'find employee' use case
             String id = request.getParameter("id");
-            ca.bcit.a00057006ws.employee.types.Employee foundEmp = employeeFacade.getEmployeeById(id);
-            if (null != foundEmp) {
-                request.setAttribute("foundEmp", foundEmp);
+            GetEmployeeByIdRequest employeeByIdRequest = new GetEmployeeByIdRequest();
+            employeeByIdRequest.setId(id);
+            GetEmployeeByIdResponse foundEmpResponse = servicesPort.getEmployeeById(employeeByIdRequest);
+            if (null != foundEmpResponse) {
+                request.setAttribute("foundEmp", foundEmpResponse.getValidEmployee());
                 request.setAttribute("findSuccess", CODE_000);
             } else {
                 request.setAttribute("foundViolation", CODE_801);
@@ -99,8 +109,8 @@ public class EmployeeServlet extends HttpServlet {
                 }
             }
         }
-
-        List<Employee> employees = employeeFacade.getEmployees();
+        EmployeeListType employeeListType = servicesPort.getEmployees();
+        List<Employee> employees = employeeListType.getEmployee();
         request.getSession().setAttribute("employees", employees); // add List to session to be displayed in index.jsp
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }

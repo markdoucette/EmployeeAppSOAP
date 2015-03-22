@@ -18,9 +18,10 @@
                 <display:column sortable="false" property="id" title="Emp ID"/>
                 <display:column sortable="true" property="firstName" title="First Name"/>
                 <display:column sortable="false" property="lastName" title="Last Name"/>
-                <display:column sortable="true" property="dateOfBirth" title="Date of Birth"
-                                decorator="ca.bcit.a00057006.ui.decorator.DateColumnDecorator"/>
+                <display:column sortable="true" property="dateOfBirth" title="Date of Birth" />
             </display:table>
+            <%--decorator="ca.bcit.a00057006.ui.decorator.DateColumnDecorator"/>--%>
+
         </div>
     </article>
     <article>

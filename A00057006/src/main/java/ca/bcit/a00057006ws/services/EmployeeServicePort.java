@@ -1,5 +1,5 @@
 
-package ca.bcit.a00057006ws.employee.xml;
+package ca.bcit.a00057006ws.services;
 
 import javax.jws.Oneway;
 import javax.jws.WebMethod;
@@ -44,16 +44,6 @@ public interface EmployeeServicePort {
 
     /**
      * 
-     * @param addEmployeeRequest
-     */
-    @WebMethod
-    @Oneway
-    public void addEmployee(
-        @WebParam(name = "AddEmployeeRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "addEmployeeRequest")
-        Employee addEmployeeRequest);
-
-    /**
-     * 
      * @param removeEmployeeRequest
      */
     @WebMethod
@@ -64,15 +54,24 @@ public interface EmployeeServicePort {
 
     /**
      * 
+     * @param addEmployeeRequest
+     */
+    @WebMethod
+    @Oneway
+    public void addEmployee(
+        @WebParam(name = "AddEmployeeRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "addEmployeeRequest")
+        Employee addEmployeeRequest);
+
+    /**
+     * 
      * @param getEmployeesRequest
      * @return
      *     returns ca.bcit.a00057006ws.employee.types.EmployeeListType
      */
     @WebMethod
     @WebResult(name = "GetEmployeesResponse", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "getEmployeesResponse")
-//    public EmployeeListType getEmployees(
-//        @WebParam(name = "GetEmployeesRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "getEmployeesRequest")
-//        Object getEmployeesRequest);
     public EmployeeListType getEmployees();
-
+    //public EmployeeListType getEmployees(
+    //  @WebParam(name = "GetEmployeesRequest", targetNamespace = "http://www.bcit.ca/a00057006ws/employee/types/", partName = "getEmployeesRequest")
+    //Object getEmployeesRequest);
 }
